@@ -697,7 +697,7 @@ public class WlClientBuilderTest
         });
 
         var driver = CSharpGeneratorDriver.Create(generator)
-            .AddAdditionalTexts(new AdditionalText[] { new CustomAdditionalText("wayland.xml", WaylandProtocol.Text) }.ToImmutableArray())
+            .AddAdditionalTexts([new CustomAdditionalText("wayland.xml", WaylandProtocol.Text)])
             .WithUpdatedAnalyzerConfigOptions(analyzerConfigOptions);
 
         _ = driver.RunGeneratorsAndUpdateCompilation(compilation, out var output, out var diagnostics);
@@ -707,17 +707,11 @@ public class WlClientBuilderTest
         outputDiagnostics.IsEmpty.Should().BeTrue();
     }
 
-    private class CustomAdditionalText : AdditionalText
+    private sealed class CustomAdditionalText(string path, string content) : AdditionalText
     {
-        private readonly string _text;
+        private readonly string _text = content;
 
-        public override string Path { get; }
-
-        public CustomAdditionalText(string path, string content)
-        {
-            Path = path;
-            _text = content;
-        }
+        public override string Path { get; } = path;
 
         public override SourceText GetText(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -725,9 +719,9 @@ public class WlClientBuilderTest
         }
     }
 
-    private class CustomAnalyzerConfigOptionsProvider : AnalyzerConfigOptionsProvider
+    private sealed class CustomAnalyzerConfigOptionsProvider : AnalyzerConfigOptionsProvider
     {
-        private readonly List<Entry<AdditionalText>> _additionalTextOptions = new();
+        private readonly List<Entry<AdditionalText>> _additionalTextOptions = [];
 
         public override AnalyzerConfigOptions GlobalOptions => new CustomAnalyzerConfigOptions();
 
@@ -753,7 +747,7 @@ public class WlClientBuilderTest
 
         private static readonly CustomAnalyzerConfigOptions EmptyOptions = new();
 
-        private class Entry<T>
+        private sealed class Entry<T>
         {
             public Func<T, bool> Condition { get; }
             public Dictionary<string, string> Map { get; }
@@ -771,11 +765,11 @@ public class WlClientBuilderTest
         }
     }
 
-    internal class CustomAnalyzerConfigOptions : AnalyzerConfigOptions
+    internal sealed class CustomAnalyzerConfigOptions : AnalyzerConfigOptions
     {
         private readonly Dictionary<string, string> _map;
 
-        public CustomAnalyzerConfigOptions() => _map = new Dictionary<string, string>();
+        public CustomAnalyzerConfigOptions() => _map = [];
         public CustomAnalyzerConfigOptions(Dictionary<string, string> map) => _map = map;
 
         public override bool TryGetValue(string key, [NotNullWhen(true)] out string? value)
