@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Nuget Properties">
-    <PackageId>WaylandSharp</PackageId>
+    <PackageId>marysaka.WaylandSharp</PackageId>
     <Description>An incremental source generator to automatically create bindings to Wayland using given protocol xml files.</Description>
-    <Authors>X9VoiD</Authors>
+    <Authors>marysaka;X9VoiD</Authors>
     <PackageTags>wayland;source-generator;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/X9VoiD/WaylandSharp</RepositoryUrl>
+    <RepositoryUrl>https://github.com/marysaka/WaylandSharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadMeFile>README.md</PackageReadMeFile>
   </PropertyGroup>
