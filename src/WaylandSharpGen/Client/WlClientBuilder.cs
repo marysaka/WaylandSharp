@@ -1242,6 +1242,11 @@ public unsafe partial class {{WlDisplayTypeName}} : {{WlClientObjectTypeName}}
         CheckIfDisposed();
         return WlDisplayDispatch(({{_WlDisplayTypeName}}*)_proxyObject);
     }
+
+    internal override void Destroy({{_WlProxyTypeName}}* proxy)
+    {
+        WlDisplayDisconnect(({{_WlDisplayTypeName}}*)proxy);
+    }
 }
 
 public class {{WlClientExceptionTypeName}} : Exception
