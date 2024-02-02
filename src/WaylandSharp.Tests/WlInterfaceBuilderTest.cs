@@ -63,7 +63,7 @@ public class WlInterfaceBuilderTest
                 public static readonly WlInterface SimpleInterface;
                 static WlInterface()
                 {
-                    SimpleInterface = new WlInterface.Builder("simple_interface", 1).{{registerFunction}}("foo", "i", new WlInterface? []{null});
+                    SimpleInterface = new WlInterface.Builder("simple_interface", 1).{{registerFunction}}("foo", "i", new WlInterface? [] { null });
                 }
 
                 public static WlInterface FromInterfaceName(string name)
@@ -109,7 +109,7 @@ public class WlInterfaceBuilderTest
                 public static readonly WlInterface SimpleInterface;
                 static WlInterface()
                 {
-                    SimpleInterface = new WlInterface.Builder("simple_interface", 2).Method("foo", "2i", new WlInterface? []{null});
+                    SimpleInterface = new WlInterface.Builder("simple_interface", 2).Method("foo", "2i", new WlInterface? [] { null });
                 }
 
                 public static WlInterface FromInterfaceName(string name)
@@ -161,8 +161,8 @@ public class WlInterfaceBuilderTest
                 public static readonly WlInterface SimpleInterfaceB;
                 static WlInterface()
                 {
-                    SimpleInterfaceA = new WlInterface.Builder("simple_interface_a", 1).Method("foo", "i", new WlInterface? []{null});
-                    SimpleInterfaceB = new WlInterface.Builder("simple_interface_b", 1).Method("apple", "o", new WlInterface? []{SimpleInterfaceA});
+                    SimpleInterfaceA = new WlInterface.Builder("simple_interface_a", 1).Method("foo", "i", new WlInterface? [] { null });
+                    SimpleInterfaceB = new WlInterface.Builder("simple_interface_b", 1).Method("apple", "o", new WlInterface? [] { SimpleInterfaceA });
                 }
 
                 public static WlInterface FromInterfaceName(string name)
@@ -215,8 +215,8 @@ public class WlInterfaceBuilderTest
                 public static readonly WlInterface SimpleInterfaceB;
                 static WlInterface()
                 {
-                    SimpleInterfaceB = new WlInterface.Builder("simple_interface_b", 1).Method("foo", "i", new WlInterface? []{null});
-                    SimpleInterfaceA = new WlInterface.Builder("simple_interface_a", 1).Method("apple", "o", new WlInterface? []{SimpleInterfaceB});
+                    SimpleInterfaceB = new WlInterface.Builder("simple_interface_b", 1).Method("foo", "i", new WlInterface? [] { null });
+                    SimpleInterfaceA = new WlInterface.Builder("simple_interface_a", 1).Method("apple", "o", new WlInterface? [] { SimpleInterfaceB });
                 }
 
                 public static WlInterface FromInterfaceName(string name)

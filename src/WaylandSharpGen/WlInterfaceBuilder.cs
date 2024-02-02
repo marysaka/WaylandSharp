@@ -127,7 +127,7 @@ internal class WlInterfaceBuilder
                     Token(SyntaxKind.PublicKeyword),
                     Token(SyntaxKind.PartialKeyword)]))
             .WithMembers(List(_members))
-            .NormalizeWhitespace(eol: Environment.NewLine);
+            .NormalizeWhitespace(eol: "\n");
 
         return @interface;
     }

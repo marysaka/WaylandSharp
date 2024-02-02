@@ -106,7 +106,7 @@ internal class WlClientBuilder
                 .WithStaticKeyword(
                     Token(SyntaxKind.StaticKeyword))}));
         return compilationUnit
-            .NormalizeWhitespace(eol: Environment.NewLine);
+            .NormalizeWhitespace(eol: "\n");
     }
 
     public void ProcessProtocolDefinition(Protocol protocolDefinition)

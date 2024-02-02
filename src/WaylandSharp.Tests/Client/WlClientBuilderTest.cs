@@ -46,7 +46,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -83,7 +83,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -160,7 +160,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -247,7 +247,7 @@ public class WlClientBuilderTest
         // +1 for the enum
         members.Should().HaveCount(_baseCount + 2);
         // enum will be inserted where the class was
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -293,7 +293,7 @@ public class WlClientBuilderTest
         var members = wlClientBuilder.BuildMembers();
         // The enum is added as a member of the namespace, not the class.
         members.Should().HaveCount(_baseCount + 2);
-        var protocolImplementationText = members[_customMemberIndex + 1].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex + 1].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             $$"""
@@ -310,26 +310,17 @@ public class WlClientBuilderTest
                 public class BarEventArgs : EventArgs
                 {
                     public int BarInt { get; }
-
                     public uint BarUint { get; }
-
                     public FooBarSomething BarEnum { get; }
-
                     public double BarFixed { get; }
-
                     public string BarString { get; }
-
                     public Baz BarObject { get; }
-
-                    public {{WlClientObjectTypeName}} BarInterfacelessObject { get; }
-
+                    public WlClientObject BarInterfacelessObject { get; }
                     public OhNyo BarNewid { get; }
-
                     public WlArray BarArray { get; }
-
                     public int BarFd { get; }
 
-                    public BarEventArgs(int bar_int, uint bar_uint, FooBarSomething bar_enum, double bar_fixed, string bar_string, Baz bar_object, {{WlClientObjectTypeName}} bar_interfaceless_object, OhNyo bar_newid, WlArray bar_array, int bar_fd)
+                    public BarEventArgs(int bar_int, uint bar_uint, FooBarSomething bar_enum, double bar_fixed, string bar_string, Baz bar_object, WlClientObject bar_interfaceless_object, OhNyo bar_newid, WlArray bar_array, int bar_fd)
                     {
                         BarInt = bar_int;
                         BarUint = bar_uint;
@@ -409,7 +400,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -453,7 +444,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -498,7 +489,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -557,7 +548,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 2);
-        var protocolImplementationText = members[_customMemberIndex + 1].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex + 1].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -617,7 +608,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -706,7 +697,7 @@ public class WlClientBuilderTest
 
         var members = wlClientBuilder.BuildMembers();
         members.Should().HaveCount(_baseCount + 1);
-        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var protocolImplementationText = members[_customMemberIndex].NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """

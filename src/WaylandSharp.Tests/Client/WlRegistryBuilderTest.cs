@@ -13,7 +13,7 @@ public class WlRegistryBuilderTest
         var wlRegistryBuilder = new WlRegistryBuilder();
 
         var wlRegistryClass = wlRegistryBuilder.Build();
-        var fullText = wlRegistryClass.NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var fullText = wlRegistryClass.NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """
@@ -55,7 +55,7 @@ public class WlRegistryBuilderTest
         wlRegistryBuilder.ProcessInterfaceDefinition(protocolInterfaceDefinition);
 
         var wlRegistryClass = wlRegistryBuilder.Build();
-        var fullText = wlRegistryClass.NormalizeWhitespace(eol: Environment.NewLine).ToFullString();
+        var fullText = wlRegistryClass.NormalizeWhitespace(eol: "\n").ToFullString();
 
         var expectedText =
             """

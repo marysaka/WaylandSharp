@@ -43,14 +43,14 @@ internal class WlClientPInvokeBuilder
     public ClassDeclarationSyntax Build()
     {
         var memberDeclarationList = _syntax.Members.AddRange(_marshal.Values);
-        return _syntax.WithMembers(memberDeclarationList).NormalizeWhitespace(eol: Environment.NewLine);
+        return _syntax.WithMembers(memberDeclarationList).NormalizeWhitespace(eol: "\n");
     }
 
     internal MethodDeclarationSyntax GetMethodDeclaration(Method definition)
     {
         var signature = definition.ToSignature().AsHash();
         return !definition.Arguments.Any(a => a.Type == ArgumentType.Array)
-            ? _marshal[signature].NormalizeWhitespace(eol: Environment.NewLine)
+            ? _marshal[signature].NormalizeWhitespace(eol: "\n")
             : throw new NotSupportedException();
     }
 
