@@ -87,7 +87,7 @@ public class ConnectionTest
             if (e.Interface == WlInterface.WlOutput.Name)
             {
                 using var output = registry.Bind<WlOutput>(e.Name, e.Interface, e.Version);
-                output.GetId().Should().Be(e.Name);
+                output.GetVersion().Should().Be(e.Version);
             }
         };
 
