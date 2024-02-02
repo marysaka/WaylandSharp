@@ -4,9 +4,9 @@ using WaylandSharpGen.Xml;
 
 namespace WaylandSharpGen;
 
-internal static class Util
+internal static partial class Util
 {
-    private static readonly Regex _isStartingWithDigit = new(@"^\d", RegexOptions.Compiled);
+    private static readonly Regex _isStartingWithDigit = MyRegex();
 
     public static string? DefiniteNull(this string? s)
     {
@@ -103,5 +103,7 @@ internal static class Util
 
         return new Signature(signature.ToString());
     }
-}
 
+    [GeneratedRegex(@"^\d", RegexOptions.Compiled)]
+    private static partial Regex MyRegex();
+}

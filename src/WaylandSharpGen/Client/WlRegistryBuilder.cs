@@ -6,7 +6,7 @@ namespace WaylandSharpGen.Client;
 
 internal class WlRegistryBuilder
 {
-    private readonly List<SwitchExpressionArmSyntax> _switchExpressionArmSyntaxes = new();
+    private readonly List<SwitchExpressionArmSyntax> _switchExpressionArmSyntaxes = [];
 
     public ClassDeclarationSyntax Build()
     {

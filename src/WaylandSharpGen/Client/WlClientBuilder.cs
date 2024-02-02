@@ -483,10 +483,10 @@ internal class WlClientBuilder
                     _WlDispatcherFuncTTypeSyntax,
                     Identifier("CreateDispatcher"))
                 .WithModifiers(
-                    TokenList(new[]{
+                    TokenList([
                         Token(SyntaxKind.InternalKeyword),
                         Token(SyntaxKind.SealedKeyword),
-                        Token(SyntaxKind.OverrideKeyword)}))
+                        Token(SyntaxKind.OverrideKeyword)]))
                 .WithBody(Block(
                         dispatcherDelegate,
                         ReturnStatement(
@@ -680,10 +680,12 @@ internal class WlClientBuilder
         var protocolClassDeclaration =
             ClassDeclaration(interfaceName)
             .WithModifiers(
-                TokenList(new[]{
-                Token(SyntaxKind.PublicKeyword),
-                Token(SyntaxKind.UnsafeKeyword),
-                Token(SyntaxKind.PartialKeyword)}))
+                TokenList(
+                [
+                    Token(SyntaxKind.PublicKeyword),
+                    Token(SyntaxKind.UnsafeKeyword),
+                    Token(SyntaxKind.PartialKeyword)
+                ]))
             .WithBaseList(
                 BaseList(
                     SingletonSeparatedList<BaseTypeSyntax>(

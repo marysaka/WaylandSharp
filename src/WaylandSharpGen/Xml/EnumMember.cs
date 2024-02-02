@@ -21,7 +21,7 @@ internal sealed record EnumMember
         var name = element.GetAttribute("name");
         var valueText = element.GetAttribute("value");
         var value = valueText.StartsWith("0x", StringComparison.InvariantCulture)
-            ? int.Parse(valueText.Substring(2), NumberStyles.HexNumber)
+            ? int.Parse(valueText[2..], NumberStyles.HexNumber)
             : int.Parse(valueText);
 
         var documentation = element.GetAttribute("summary").DefiniteNull();

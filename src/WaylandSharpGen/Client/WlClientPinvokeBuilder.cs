@@ -1,12 +1,12 @@
-using static WaylandSharpGen.WlCommonIdentifiers;
-using static WaylandSharpGen.Client.WlClientIdentifiers;
 using WaylandSharpGen.Xml;
+using static WaylandSharpGen.Client.WlClientIdentifiers;
+using static WaylandSharpGen.WlCommonIdentifiers;
 
 namespace WaylandSharpGen.Client;
 
 internal class WlClientPInvokeBuilder
 {
-    private readonly Dictionary<string, MethodDeclarationSyntax> _marshal = new();
+    private readonly Dictionary<string, MethodDeclarationSyntax> _marshal = [];
 
     private readonly ClassDeclarationSyntax _syntax;
 

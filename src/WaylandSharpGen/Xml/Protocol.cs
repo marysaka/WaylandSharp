@@ -46,7 +46,7 @@ internal sealed record Protocol
 
     public override int GetHashCode()
     {
-        var hash = Name.GetHashCode();
+        var hash = Name.GetHashCode(StringComparison.Ordinal);
 
         foreach (var @interface in Interfaces)
             HashCode.Combine(hash, @interface.GetHashCode());

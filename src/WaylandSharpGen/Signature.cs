@@ -2,9 +2,9 @@ using System.Text.RegularExpressions;
 
 namespace WaylandSharpGen;
 
-public readonly struct Signature : IEquatable<Signature>
+public readonly partial struct Signature : IEquatable<Signature>
 {
-    private static readonly Regex _signatureRegex = new(@"(?'version'\d*)(?'signature'[iufsonah?]+)", RegexOptions.Compiled);
+    private static readonly Regex _signatureRegex = MyRegex();
 
     public readonly string Raw;
     public readonly int? Version;
@@ -23,7 +23,10 @@ public readonly struct Signature : IEquatable<Signature>
 
     public string AsHash()
     {
-        return SignatureOnly.Replace("?", "").Replace("h", "i").Replace("f", "i").Replace("n", "o");
+        return SignatureOnly.Replace("?", "", StringComparison.CurrentCulture)
+                            .Replace("h", "i", StringComparison.CurrentCulture)
+                            .Replace("f", "i", StringComparison.CurrentCulture)
+                            .Replace("n", "o", StringComparison.CurrentCulture);
     }
 
     public static bool operator ==(Signature left, Signature right) => left.Raw == right.Raw;
@@ -41,7 +44,7 @@ public readonly struct Signature : IEquatable<Signature>
 
     public override int GetHashCode()
     {
-        return Raw.GetHashCode();
+        return Raw.GetHashCode(StringComparison.Ordinal);
     }
 
     public SignatureEnumerator GetEnumerator()
@@ -96,4 +99,7 @@ public readonly struct Signature : IEquatable<Signature>
             Nullable = nullable;
         }
     }
+
+    [GeneratedRegex(@"(?'version'\d*)(?'signature'[iufsonah?]+)", RegexOptions.Compiled)]
+    private static partial Regex MyRegex();
 }

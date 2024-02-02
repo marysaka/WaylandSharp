@@ -1,21 +1,20 @@
-using System.Collections.Immutable;
 using WaylandSharpGen.Xml;
 using static WaylandSharpGen.WlCommonIdentifiers;
 namespace WaylandSharpGen;
 
 internal class WlInterfaceBuilder
 {
-    private readonly HashSet<string> _declaredInterfaces = new();
-    private readonly List<ExpressionStatementSyntax> _initializers = new();
-    private readonly List<MemberDeclarationSyntax> _members = new();
-    private readonly List<SwitchExpressionArmSyntax> _switchArms = new();
+    private readonly HashSet<string> _declaredInterfaces = [];
+    private readonly List<ExpressionStatementSyntax> _initializers = [];
+    private readonly List<MemberDeclarationSyntax> _members = [];
+    private readonly List<SwitchExpressionArmSyntax> _switchArms = [];
 
     public void GenerateCache(Protocol protocolDefinition)
     {
         var protocolInterfaces =
             new LinkedList<Interface>(protocolDefinition.Interfaces);
 
-        while (protocolInterfaces.Any())
+        while (protocolInterfaces.Count != 0)
         {
             var interfaceDefinition = protocolInterfaces.First.Value;
             protocolInterfaces.RemoveFirst();
@@ -91,9 +90,9 @@ internal class WlInterfaceBuilder
                 Identifier("FromInterfaceName"))
             .WithModifiers(
                 TokenList(
-                    new[]{
+                    [
                         Token(SyntaxKind.PublicKeyword),
-                        Token(SyntaxKind.StaticKeyword)}))
+                        Token(SyntaxKind.StaticKeyword)]))
             .WithParameterList(
                 ParameterList(
                     SingletonSeparatedList(
@@ -124,9 +123,9 @@ internal class WlInterfaceBuilder
         var @interface =
             ClassDeclaration(WlInterfaceTypeName)
             .WithModifiers(
-                TokenList(new[]{
+                TokenList([
                     Token(SyntaxKind.PublicKeyword),
-                    Token(SyntaxKind.PartialKeyword)}))
+                    Token(SyntaxKind.PartialKeyword)]))
             .WithMembers(List(_members))
             .NormalizeWhitespace(eol: Environment.NewLine);
 
@@ -152,10 +151,10 @@ internal class WlInterfaceBuilder
                             Identifier(cacheIdentifier)))))
                 .WithModifiers(
                     TokenList(
-                        new[]{
+                        [
                             Token(SyntaxKind.PublicKeyword),
                             Token(SyntaxKind.StaticKeyword),
-                            Token(SyntaxKind.ReadOnlyKeyword)}));
+                            Token(SyntaxKind.ReadOnlyKeyword)]));
         _members.Add(fieldDeclaration);
 
         // Generate the interface cache builder.
@@ -228,7 +227,7 @@ internal class WlInterfaceBuilder
         _switchArms.Add(switchArm);
     }
 
-    private ExpressionSyntax RegisterMessage(Protocol protocolDefinition,
+    private InvocationExpressionSyntax RegisterMessage(Protocol protocolDefinition,
                                              LinkedList<Interface> interfaces,
                                              Interface interfaceDefinition,
                                              ExpressionSyntax interfaceBuilderSyntax,
@@ -247,9 +246,9 @@ internal class WlInterfaceBuilder
                 message.DocumentationSummary,
                 message.Documentation,
                 message.ExtraTypeAnnotation,
-                new MethodArgument[] {
+                [
                     message.Arguments[0],
-                    new MethodArgument(
+                    new(
                         name: "interface",
                         type: ArgumentType.String,
                         nullable: false,
@@ -257,7 +256,7 @@ internal class WlInterfaceBuilder
                         documentation: null,
                         @enum: null
                     ),
-                    new MethodArgument(
+                    new(
                         name: "version",
                         type: ArgumentType.Uint,
                         nullable: false,
@@ -266,7 +265,7 @@ internal class WlInterfaceBuilder
                         @enum: null
                     ),
                     message.Arguments[1]
-                }.ToImmutableArray());
+                ]);
         }
 
         var types = new List<ExpressionSyntax>();
@@ -329,12 +328,8 @@ internal class WlInterfaceBuilder
             if (argument.Interface is not null
                 && !_declaredInterfaces.Contains(argument.Interface))
             {
-                var dep = PopInterface(interfaces, argument.Interface);
-                if (dep is null)
-                {
-                    throw new InvalidOperationException(
+                var dep = PopInterface(interfaces, argument.Interface) ?? throw new InvalidOperationException(
                         $"Interface '{argument.Interface}' not found. Needed by '{interfaceDefinition.Name}.{@event.Name}'");
-                }
                 ProcessInterface(protocolDefinition, interfaces, dep.Value);
             }
         }

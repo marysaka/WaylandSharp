@@ -787,16 +787,10 @@ public class WlClientBuilderTest
 
         private static readonly CustomAnalyzerConfigOptions EmptyOptions = new();
 
-        private sealed class Entry<T>
+        private sealed class Entry<T>(Func<T, bool> condition, Dictionary<string, string> map)
         {
-            public Func<T, bool> Condition { get; }
-            public Dictionary<string, string> Map { get; }
-
-            public Entry(Func<T, bool> condition, Dictionary<string, string> map)
-            {
-                Condition = condition;
-                Map = map;
-            }
+            public Func<T, bool> Condition { get; } = condition;
+            public Dictionary<string, string> Map { get; } = map;
 
             public CustomAnalyzerConfigOptions Create()
             {
@@ -818,7 +812,7 @@ public class WlClientBuilderTest
         }
     }
 
-    private static Compilation CreateCompilation()
+    private static CSharpCompilation CreateCompilation()
     {
         return CSharpCompilation.Create("compilation",
             syntaxTrees: null,

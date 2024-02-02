@@ -2,13 +2,12 @@
 
   <PropertyGroup>
     <VersionPrefix>0.2.1</VersionPrefix>
-    <LangVersion>preview</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
     <AnalysisMode>All</AnalysisMode>
     <ImplicitUsings>false</ImplicitUsings>
-    <WarningLevel>9999</WarningLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <NoWarn>CA1861;CS8602;CS8604;CS8767;IDE0005</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
